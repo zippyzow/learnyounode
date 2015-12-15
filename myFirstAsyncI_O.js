@@ -1,11 +1,14 @@
 var fs = require('fs');
 var file = process.argv[2];
 
-fs.readFile(file, function(err, data) {
+var readFileCallback = function(err, data) {
   if (err) {
-    throw err;
+    console.error(err);
+  } else {
+    var splitStrings = data.toString().split('\n');
+    console.log(splitStrings.length - 1);
   }
-  var splitStrings = data.toString().split('\n');
-  console.log(splitStrings.length - 1);
-});
+};
+
+fs.readFile(file, readFileCallback);
 
